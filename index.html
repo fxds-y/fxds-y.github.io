@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FHARID RMX - Store</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #0d0d11;
+            color: white;
+            padding-bottom: 70px;
+        }
+        header {
+            background: linear-gradient(90deg, #7b2cbf, #00b4d8);
+            padding: 15px;
+            text-align: center;
+        }
+        header h1 { font-size: 20px; }
+        header p { font-size: 12px; }
+
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+        .card {
+            background-color: #1a1a24;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #2a2a3a;
+        }
+        .btn {
+            display: block;
+            background-color: #00b4d8;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .product-img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .price {
+            color: #00ff88;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .btn-buy {
+            background-color: #00e676;
+            color: black;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid #222;
+        }
+        .nav-item {
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .nav-item.active {
+            color: #00b4d8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>FHARID RMX</h1>
+        <p>Flm Enak Ya Cuman Di Fharid Rmx</p>
+    </header>
+
+    <!-- Dashboard/Beranda -->
+    <div id="dashboard" class="container">
+        <div class="card">
+            <h3>Klik (🛍️Produk) Di Kanan Bawah</h3>
+            <p style="font-size: 12px; margin: 10px 0; color: #ccc;">
+                Lihat daftar produk pada menu produk di bawah.
+            </p>
+            <div class="btn">💬 Saluranku</div>
+            <div class="btn">💬 Testimoni</div>
+            <div class="btn">💬 Informasi</div>
+            <hr style="border-color: #333; margin: 15px 0;">
+            <p>⭐ Total Produk : 20</p>
+            <p>🔥 Terjual : 124</p>
+        </div>
+    </div>
+
+    <!-- Halaman Produk -->
+    <div id="produk" class="container" style="display: none;">
+        <div class="card">
+            <img src="https://via.placeholder.com/300x300.png?text=FHARID+RMX" class="product-img" alt="Cover">
+            <audio controls style="width: 100%; margin-top: 10px;">
+                <source src="" type="audio/mpeg">
+            </audio>
+            <h4 style="margin-top: 10px;">RADYA SPN - SELAIN DONATUR VIRAL</h4>
+            <div class="price">Rp45.000</div>
+            <p style="font-size: 12px; color: #aaa; margin-bottom: 10px;">Terjual 13</p>
+            <button onclick="buyProduct('RADYA SPN - SELAIN DONATUR VIRAL')" class="btn btn-buy">🛒 Buy</button>
+        </div>
+    </div>
+
+    <!-- Navigasi Bawah -->
+    <div class="bottom-nav">
+        <span class="nav-item active" onclick="switchTab('dashboard')">🏠 Dashboard</span>
+        <span class="nav-item" onclick="switchTab('produk')">🛍️ Produk</span>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            document.getElementById('dashboard').style.display = tabName === 'dashboard' ? 'block' : 'none';
+            document.getElementById('produk').style.display = tabName === 'produk' ? 'block' : 'none';
+            
+            let navs = document.querySelectorAll('.nav-item');
+            navs[0].classList.toggle('active', tabName === 'dashboard');
+            navs[1].classList.toggle('active', tabName === 'produk');
+        }
+
+        function buyProduct(namaProduk) {
+            alert("Anda memilih produk: " + namaProduk);
+        }
+    </script>
+</body>
+</html>
