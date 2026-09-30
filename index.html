@@ -1,149 +1,42 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FHARID RMX - Store</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background-color: #0d0d11;
-            color: white;
-            padding-bottom: 70px;
-        }
-        header {
-            background: linear-gradient(90deg, #7b2cbf, #00b4d8);
-            padding: 15px;
-            text-align: center;
-        }
-        header h1 { font-size: 20px; }
-        header p { font-size: 12px; }
+<!doctype html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>FHARID RMX</title><style id="x"></style></head><body><div id="q"></div><script>
+(()=>{
+const _0x1=(s)=>decodeURIComponent(escape(atob(s)));
+const _0x2=JSON.parse(_0x1("eyJicmFuZCI6IkZIQVJJRCBSTVgiLCJ0YWciOiJGbG0gRW5hayBZYSBDdW1hbiBEaSBGaGFyaWQgUm14IiwiYmciOiJCRUFHUk9VTkQuanBnIiwibG9nbyI6IkxPR08uanBnIiwiY2hhbm5lbCI6Imh0dHBzOi8vd2hhdHNhcHAuY29tL2NoYW5uZWwvMDAyOVZiRE8xdTBDMUZ1NWJyS3hUVjEyIiwid2EiOiJodHRwczovL3dhLm1lL3FyL0lYWVQyNldQNVZYQ0gxIiwiYnV5IjoiaHR0cHM6Ly93YS5tZS82Mjg1NTkxNjUyOTc5P3RleHQ9In0="));
+const _0x3=JSON.parse(_0x1("W1siQVNUQUdBIEJFUkNBTkRBIC0gQUtCQVIgQ0hBTEFZIiwiUnA0NS4wMDAiLDIsIkFLQkFSMTgubXAzIl0sWyJSQURZQSBTUE4gLSBTRUxBSU4gRE9OQVRVUiBWSVJBTCIsIlJwNDUuMDAwIiwxMywiRE9OQVRVUjEzLm1wMyJdLFsiUkFEWUEgU1BOIC0gVjIiLCJScDQ1LjAwMCIsMTEsIlJBRFlBIFYyIDE1Lm1wMyJdLFsiUkFEWUEgU1BOIC0gVjEiLCJScDQ1LjAwMCIsOSwiUkFEWUE2IC5tcDMiXSxbIlRIQUlMQU5EIC0gQUlQT04gS1VQSSIsIlJwNDUuMDAwIiwxNCwiVEggS1VQSTE2Lm1wMyJdLFsiREogVEVMT09SIEJLQi0gRlVMTCIsIlJwNDUuMDAwIiwwLCJURUxPT1IyMC5tcDMiXSxbIk1JTElPTiAtIElNQU0gU0lESUsiLCJScDQ1LjAwMCIsNSwiTUlMSU9OIFNUQVJTMTcubXAzIl0sWyJISVBEVVQgLSBMQVRBU1lBIiwiUnAzMC4wMDAiLDEwLCJISVBEVVQxMS5tcDMiXSxbIlRIQUlMQU5EIEVESVQiLCJScDQwLjAwMCIsOSwiVEg5Lm1wMyJdLFsiU1RZTEUgSkogLSBBR0EgQkVUQ0giLCJScDQ1LjAwMCIsNiwiQUdBMTQubXAzIl0sWyJFTCBXQVRFUiAtIEZVTEwgTEFHVSIsIlJwNDAuMDAwIiwxLCJXQVRFUjEyLm1wMyJdLFsiREogU1RZSEdUIE5BTkRBIDc3NyIsIlJwNDUuMDAwIiw1LCJOQU5EQTEubXAzIl0sWyJESiBTQVRSSVEgLSBGVUxMIiwiUnAzNS4wMDAiLDQsIlNBVFJJUTEwLm1wMyJdLFsiUExBWSBEQVRFIC0gSU1BTSBJU0RYIiwiUnA0MC4wMDAiLDYsIklNQU0gU0lESUsyLm1wMyJdLFsiWkVJTiBGVk5LWSIsIlJwNDAuMDAwIiwyLCJaRUlOMTkubXAzIl0sWyJESiBSVUxMWSBGVk5LWSIsIlJwMzUuMDAwIiw2LCJSVUxMWTMubXAzIl0sWyJESiBQTEFUIEtUIC0gUkFHSUwgWVQiLCJScDQwLjAwMCIsMTEsIlJBR0lMNC5tcDMiXSxbIllPVSBLTk9XIC0gSU1BTSBJU0RYIiwiUnA0MC4wMDAiLDMsIllPVSBLTk9XNS5tcDMiXSxbIkRKIC0gSkogRkFSUklKIFJNWCIsIlJwNDAuMDAwIiw1LCJGQVJSSUo3Lm1wMyJdLFsiREogLSBLSEFSSVMgU09QQU4iLCJScDQwLjAwMCIsMiwiS0hBUklTOC5tcDMiXV0="));
+document.getElementById("x").textContent=_0x1("IC8qIFJFU0VUICovICp7IG1hcmdpbjowOyBwYWRkaW5nOjA7IGJveC1zaXppbmc6Ym9yZGVyLWJveDsgZm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjsgfSAvKiBCT0RZICovIGJvZHl7IGJhY2tncm91bmQ6dXJsKCJCRUFHUk9VTkQuanBnIikgbm8tcmVwZWF0IGNlbnRlciBjZW50ZXIgZml4ZWQ7IGJhY2tncm91bmQtc2l6ZTpjb3ZlcjsgY29sb3I6d2hpdGU7IH0gLyogSEVBREVSICovIGhlYWRlcnsgcGFkZGluZzoxMHB4OyBiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCg5MGRlZywjNmEwMGZmLCMwMGJmZmYpOyBib3gtc2hhZG93OjAgMCAyMHB4IGxhYigwJSAwIDApOyBwb3NpdGlvbjpmaXhlZDsgdG9wOjA7IGxlZnQ6MDsgd2lkdGg6MTAwJTsgei1pbmRleDoxMDAwOyB9IC5oZWFkZXItY29udGVudHsgZGlzcGxheTpmbGV4OyBhbGlnbi1pdGVtczpjZW50ZXI7IGdhcDoxOHB4OyBtYXgtd2lkdGg6OTAwcHg7IG1hcmdpbjphdXRvOyB9IC5oZWFkZXItY29udGVudCBpbWd7IHdpZHRoOjUwcHg7IGhlaWdodDo1MHB4OyBib3JkZXItcmFkaXVzOjUwJTsgb2JqZWN0LWZpdDpjb3ZlcjsgfSAuaGVhZGVyLXRleHQgaDF7IGZvbnQtc2l6ZToyOHB4OyBtYXJnaW4tYm90dG9tOjZweDsgfSAuaGVhZGVyLXRleHQgcHsgb3BhY2l0eTouODsgZm9udC1zaXplOjE1cHg7IH0gLyogQ09OVEFJTkVSICovIC5jb250YWluZXJ7IHdpZHRoOjg1JTsgbWF4LXdpZHRoOjkwMHB4OyBtYXJnaW46YXV0bzsgcGFkZGluZzoxMDBweCAwIDUwcHg7IGRpc3BsYXk6Z3JpZDsgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdChhdXRvLWZpdCxtaW5tYXgoMjAwcHgsMWZyKSk7IGdhcDoyNXB4OyB9IC8qIENBUkQgKi8gLmNhcmR7IGJhY2tncm91bmQ6IzE4MTgxODsgYm9yZGVyOjJweCBzb2xpZCAjZmZmZmZmOyBib3JkZXItcmFkaXVzOjQwcHg7IG92ZXJmbG93OmhpZGRlbjsgdHJhbnNpdGlvbjouM3M7IGJveC1zaGFkb3c6MCAwIDE1cHggcmdiYSgwLDE3MCwyNTUsLjI1KTsgfSAuY2FyZDpob3ZlcnsgdHJhbnNmb3JtOnRyYW5zbGF0ZVkoLThweCk7IGJveC1zaGFkb3c6MCAwIDI1cHggIzAwYWFmZjsgfSAuY2FyZCBpbWd7IHdpZHRoOjg1JTsgbWFyZ2luOjIwcHggYXV0bzsgZGlzcGxheTpibG9jazsgYXNwZWN0LXJhdGlvOjEvMTsgb2JqZWN0LWZpdDpjb3ZlcjsgYm9yZGVyLXJhZGl1czoxNXB4OyB9IC8qIElORk8gKi8gLmluZm97IHBhZGRpbmc6MThweDsgfSAuaW5mbyBoMnsgbWFyZ2luLWJvdHRvbToxMHB4OyBmb250LXNpemU6MjNweDsgfSAucHJpY2V7IGZvbnQtc2l6ZToyNHB4OyBjb2xvcjojMDBmZjg4OyBtYXJnaW46MTBweCAwOyBmb250LXdlaWdodDpib2xkOyB9IC5zdGF0c3sgY29sb3I6I2JiYjsgbWFyZ2luLWJvdHRvbToxNXB4OyB9IC8qIFRPTUJPTCAqLyBidXR0b257IHBhZGRpbmc6MTJweDsgYm9yZGVyOm5vbmU7IGJvcmRlci1yYWRpdXM6MTBweDsgY3Vyc29yOnBvaW50ZXI7IGZvbnQtc2l6ZToxNnB4OyBmb250LXdlaWdodDpib2xkOyB0cmFuc2l0aW9uOi4zczsgfSAucGxheXsgYmFja2dyb3VuZDojMDBiZmZmOyBjb2xvcjp3aGl0ZTsgd2lkdGg6NDglOyB9IC5idXl7IGJhY2tncm91bmQ6IzAwZmY4ODsgY29sb3I6d2hpdGU7IHdpZHRoOjQ4JTsgZmxvYXQ6cmlnaHQ7IH0gYnV0dG9uOmhvdmVyeyBvcGFjaXR5Oi44NTsgfSAvKiBBVURJTyAqLyBhdWRpb3sgd2lkdGg6MTAwJTsgbWFyZ2luLXRvcDoxNXB4OyB9IC8qIEhBTEFNQU4gKi8gLnBhZ2V7IGRpc3BsYXk6bm9uZTsgfSAucGFnZS5hY3RpdmV7IGRpc3BsYXk6YmxvY2s7IH0gLyogTUVOVSBCQVdBSCAqLyAubWVudXsgcG9zaXRpb246Zml4ZWQ7IGJvdHRvbTowOyBsZWZ0OjUwJTsgdHJhbnNmb3JtOnRyYW5zbGF0ZVgoLTUwJSk7IHdpZHRoOjEwMCU7IG1heC13aWR0aDo1MDBweDsgYmFja2dyb3VuZDpyZ2JhKDIwLDIwLDIwLDAuMSk7IGJhY2tkcm9wLWZpbHRlcjpibHVyKDEwcHgpOyAtd2Via2l0LWJhY2tkcm9wLWZpbHRlcjpibHVyKDE1cHgpOyBib3JkZXI6MXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsMC4xNSk7IGJvcmRlci1yYWRpdXM6MzBweDsgZGlzcGxheTpmbGV4OyBqdXN0aWZ5LWNvbnRlbnQ6c3BhY2UtYXJvdW5kOyBhbGlnbi1pdGVtczpjZW50ZXI7IHBhZGRpbmc6MTJweCAwOyBib3gtc2hhZG93OjAgMCAyMHB4IHJnYmEoMCwxNzAsMjU1LC4yNSk7IHotaW5kZXg6MTAwMDsgfSAubWVudSBidXR0b257IGJhY2tncm91bmQ6bm9uZTsgYm9yZGVyOm5vbmU7IGNvbG9yOndoaXRlOyBmb250LXNpemU6MTZweDsgZm9udC13ZWlnaHQ6Ym9sZDsgY3Vyc29yOnBvaW50ZXI7IHBhZGRpbmc6MTBweCAyMHB4OyB9IC5tZW51IGJ1dHRvbjpob3ZlcnsgY29sb3I6IzAwYmZmZjsgfSAvKiBGT09URVIgKi8gZm9vdGVyeyB0ZXh0LWFsaWduOmNlbnRlcjsgcGFkZGluZzoyMHB4OyBjb2xvcjojODg4OyB9IC8qIFBST0dSRVNTIEJBUiAqLyAucHJvZ3Jlc3MtYm94eyB3aWR0aDo4NSU7IG1hcmdpbjowIGF1dG8gMHB4OyB9IC5wcm9ncmVzcy1iYXJ7IHdpZHRoOjEwMCU7IGhlaWdodDo1cHg7IGJhY2tncm91bmQ6IzQ0NDsgYm9yZGVyLXJhZGl1czoxMHB4OyBvdmVyZmxvdzpoaWRkZW47IGN1cnNvcjpwb2ludGVyOyB9IC5wcm9ncmVzc3sgd2lkdGg6MCU7IGhlaWdodDoxMDAlOyBiYWNrZ3JvdW5kOiNmZmZmZmY7IGJvcmRlci1yYWRpdXM6MTBweDsgfSAudGltZXsgZGlzcGxheTpmbGV4OyBqdXN0aWZ5LWNvbnRlbnQ6c3BhY2UtYmV0d2VlbjsgbWFyZ2luLXRvcDo2cHg7IGZvbnQtc2l6ZToxMnB4OyBjb2xvcjojYWFhOyB9IA==");
+document.body.style.cssText="background:url('"+_0x2.bg+"') no-repeat center center fixed;background-size:cover;color:white;";
+const _0x4=document.createElement("div");
+_0x4.innerHTML=`<header><div class="header-content"><img src="${_0x2.logo}" alt="Logo"><div class="header-text"><h1>${_0x2.brand}</h1><p>${_0x2.tag}</p></div></div></header>
+<div id="dashboard" class="page active"><div style="max-width:300px;margin:120px auto 120px;background:#181818;padding:30px;border-radius:40px;text-align:center;box-shadow:0 0 20px rgba(0,170,255,.35);"><h2 style="font-size:25px;margin-bottom:20px;">Klik (🛍Produk) Di Kanan Bawah</h2><h2 style="font-size:15px;line-height:20px;">Jika flm yang anda mau tidak ada di produk, Dan lain lain bisa wa aja.</h2><br><br><button id="c1" style="background:#00bfff;color:white;padding:15px 35px;border:none;border-radius:15px;font-size:20px;font-weight:bold;">💬 Saluranku</button><br><br><button id="c2" style="background:#00bfff;color:white;padding:15px 35px;border:none;border-radius:15px;font-size:20px;font-weight:bold;">💬 Testimoni</button><br><br><button id="c3" style="background:#00bfff;color:white;padding:15px 35px;border:none;border-radius:15px;font-size:20px;font-weight:bold;">💬 WhatsApp</button><br><br><hr style="border:1px solid #444;"><br><div style="font-size:20px;"><h3 id="totalProduk">⭐ Total Produk : 0</h3><br><h3 id="totalTerjual">🔥 Terjual : 0</h3></div></div></div>
+<div id="produk" class="page"><div class="container" id="z"></div></div><footer></footer><div class="menu"><button id="d">🏠<br>Dashboard</button><button id="p">🛍<br>Produk</button></div>`;
+document.getElementById("q").replaceWith(_0x4);
 
-        .container {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 10px;
-        }
-        .card {
-            background-color: #1a1a24;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            border: 1px solid #2a2a3a;
-        }
-        .btn {
-            display: block;
-            background-color: #00b4d8;
-            color: white;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .product-img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .price {
-            color: #00ff88;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .btn-buy {
-            background-color: #00e676;
-            color: black;
-            border: none;
-            width: 100%;
-            font-size: 16px;
-        }
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #000;
-            display: flex;
-            justify-content: space-around;
-            padding: 12px 0;
-            border-top: 1px solid #222;
-        }
-        .nav-item {
-            color: #888;
-            text-decoration: none;
-            font-size: 14px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .nav-item.active {
-            color: #00b4d8;
-        }
-    </style>
-</head>
-<body>
+["c1","c2"].forEach(k=>document.getElementById(k).onclick=()=>window.open(_0x2.channel,"_blank"));
+document.getElementById("c3").onclick=()=>window.open(_0x2.wa,"_blank");
 
-    <!-- Header -->
-    <header>
-        <h1>FHARID RMX</h1>
-        <p>Flm Enak Ya Cuman Di Fharid Rmx</p>
-    </header>
+const _0x5=document.getElementById("z");
+_0x3.forEach((v,i)=>{
+ const e=document.createElement("div");e.className="card";
+ e.innerHTML='<img src="'+_0x2.logo+'"><div class="info"><h2></h2><div class="price"></div><div class="stats"></div><button class="play">▶️️️️️️️ Preview</button><button class="buy">🛒 Buy</button><audio></audio></div>';
+ e.querySelector("h2").textContent=v[0];e.querySelector(".price").textContent=v[1];e.querySelector(".stats").textContent="Terjual "+v[2];e.querySelector("audio").src="./"+v[3];
+ e.querySelector(".buy").onclick=()=>{const msg="Halo "+_0x2.brand+",\nSaya mau beli flm:\n\n"+v[0]+"\n"+v[1];window.open(_0x2.buy+encodeURIComponent(msg),"_blank")};
+ _0x5.appendChild(e);
+});
 
-    <!-- Dashboard/Beranda -->
-    <div id="dashboard" class="container">
-        <div class="card">
-            <h3>Klik (🛍️Produk) Di Kanan Bawah</h3>
-            <p style="font-size: 12px; margin: 10px 0; color: #ccc;">
-                Lihat daftar produk pada menu produk di bawah.
-            </p>
-            <div class="btn">💬 Saluranku</div>
-            <div class="btn">💬 Testimoni</div>
-            <div class="btn">💬 Informasi</div>
-            <hr style="border-color: #333; margin: 15px 0;">
-            <p>⭐ Total Produk : 20</p>
-            <p>🔥 Terjual : 124</p>
-        </div>
-    </div>
-
-    <!-- Halaman Produk -->
-    <div id="produk" class="container" style="display: none;">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x300.png?text=FHARID+RMX" class="product-img" alt="Cover">
-            <audio controls style="width: 100%; margin-top: 10px;">
-                <source src="" type="audio/mpeg">
-            </audio>
-            <h4 style="margin-top: 10px;">RADYA SPN - SELAIN DONATUR VIRAL</h4>
-            <div class="price">Rp45.000</div>
-            <p style="font-size: 12px; color: #aaa; margin-bottom: 10px;">Terjual 13</p>
-            <button onclick="buyProduct('RADYA SPN - SELAIN DONATUR VIRAL')" class="btn btn-buy">🛒 Buy</button>
-        </div>
-    </div>
-
-    <!-- Navigasi Bawah -->
-    <div class="bottom-nav">
-        <span class="nav-item active" onclick="switchTab('dashboard')">🏠 Dashboard</span>
-        <span class="nav-item" onclick="switchTab('produk')">🛍️ Produk</span>
-    </div>
-
-    <script>
-        function switchTab(tabName) {
-            document.getElementById('dashboard').style.display = tabName === 'dashboard' ? 'block' : 'none';
-            document.getElementById('produk').style.display = tabName === 'produk' ? 'block' : 'none';
-            
-            let navs = document.querySelectorAll('.nav-item');
-            navs[0].classList.toggle('active', tabName === 'dashboard');
-            navs[1].classList.toggle('active', tabName === 'produk');
-        }
-
-        function buyProduct(namaProduk) {
-            alert("Anda memilih produk: " + namaProduk);
-        }
-    </script>
-</body>
-</html>
+document.querySelectorAll(".play").forEach(b=>{
+ b.onclick=function(){const c=this.closest(".card"),a=c.querySelector("audio");if(!a.paused){a.pause();this.innerHTML="▶️️️️️️️ Play";return}document.querySelectorAll("audio").forEach(o=>{if(o!==a){o.pause();o.currentTime=0;const x=o.closest(".card").querySelector(".play");if(x)x.innerHTML="▶️️️️️️️ Preview"}});a.style.display="block";a.play();this.innerHTML="⏸ Pause"};
+ const a=b.closest(".card").querySelector("audio");a.addEventListener("pause",()=>{if(a.currentTime>0&&a.currentTime<a.duration)b.innerHTML="▶️️️️️️️ Play"});a.addEventListener("ended",()=>{b.innerHTML="▶️️️️️️️ Preview";a.style.display="none"});
+});
+function _0x6(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active")}
+document.getElementById("d").onclick=()=>_0x6("dashboard");document.getElementById("p").onclick=()=>_0x6("produk");
+document.getElementById("totalProduk").textContent="⭐ Total Produk : "+_0x3.length;
+document.getElementById("totalTerjual").textContent="🔥 Terjual : "+_0x3.reduce((a,v)=>a+(+v[2]||0),0);
+document.querySelectorAll(".card").forEach(card=>{
+const a=card.querySelector("audio"),box=document.createElement("div");if(!a)return;box.className="progress-box";box.innerHTML='<div class="progress-bar"><div class="progress"></div></div><div class="time"><span class="current">0:00</span><span class="duration">0:00</span></div>';card.querySelector("img").after(box);
+const pr=box.querySelector(".progress"),cu=box.querySelector(".current"),du=box.querySelector(".duration"),pb=box.querySelector(".progress-bar");
+const ft=s=>isNaN(s)?"0:00":Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0");
+a.addEventListener("loadedmetadata",()=>du.textContent=ft(a.duration));a.addEventListener("timeupdate",()=>{pr.style.width=(a.currentTime/a.duration*100)+"%";cu.textContent=ft(a.currentTime)});
+pb.addEventListener("pointerdown",e=>{e.preventDefault();const mv=x=>{const r=pb.getBoundingClientRect();a.currentTime=Math.max(0,Math.min(1,(x.clientX-r.left)/r.width))*a.duration};mv(e);const up=()=>{document.removeEventListener("pointermove",mv);document.removeEventListener("pointerup",up)};document.addEventListener("pointermove",mv);document.addEventListener("pointerup",up)});a.addEventListener("ended",()=>{pr.style.width="0%";cu.textContent="0:00"});
+});
+})();
+</script></body></html>
