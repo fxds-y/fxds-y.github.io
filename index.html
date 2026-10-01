@@ -21,7 +21,7 @@
       transition: background-image 0.3s ease-in-out;
     }
 
-    /* HEADER - TEMA BIRU KE MERAHAN */
+    /* HEADER - WAKTU DIUBAH AKAN MENYESUAIKAN VIA JAVASCRIPT */
     header {
       padding: 12px 20px;
       background: linear-gradient(90deg, #0055ff, #ff0055);
@@ -31,6 +31,7 @@
       left: 0;
       width: 100%;
       z-index: 1000;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
     .header-content {
@@ -433,18 +434,27 @@
     document.getElementById("totalProduk").textContent = "⭐ Total Produk : " + produkList.length;
     document.getElementById("totalTerjual").textContent = "🔥 Terjual : " + totalTerjualCount;
 
-    // Navigasi Halaman + Ganti Background
+    // Navigasi Halaman + Ganti Background & Warna Header
     const showPage = (id) => {
       document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
       document.getElementById(id).classList.add("active");
 
       document.querySelectorAll(".menu button").forEach(b => b.classList.remove("nav-active"));
+      
+      const headerEl = document.querySelector("header");
+
       if (id === "dashboard") {
         document.getElementById("navDashboard").classList.add("nav-active");
         document.body.style.backgroundImage = "url('BG.jpg')";
+        // Header Halaman Dashboard (Gradasi Biru-Pink Neon)
+        headerEl.style.background = "linear-gradient(90deg, #0055ff, #ff0055)";
+        headerEl.style.boxShadow = "0 4px 15px rgba(255, 0, 85, 0.4)";
       } else {
         document.getElementById("navProduk").classList.add("nav-active");
         document.body.style.backgroundImage = "url('BG2.jpg')";
+        // Header Halaman Produk (Gelap & Elegan agar pas dengan BG2)
+        headerEl.style.background = "linear-gradient(90deg, #181818, #333333)";
+        headerEl.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.7)";
       }
     };
 
