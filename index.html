@@ -386,7 +386,7 @@
 
       // Event Tombol Beli
       card.querySelector(".buy").onclick = () => {
-        const msg = `Halo ${config.brand},\n\nSaya ingin membeli lagu/remix:\n📌 *Judul:* ${title}\n💰 *Harga:* ${price}`;
+        const msg = `Halo Bang ${config.brand},\nGw Mau Beli Flm ini:\n\n*JUDUL:* ${title}\n*HARGA:* ${price}`;
         window.open(`https://wa.me/${config.waNumber}?text=${encodeURIComponent(msg)}`, "_blank");
       };
 
