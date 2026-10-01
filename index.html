@@ -14,7 +14,7 @@
     }
 
     body {
-      background: url('bg.jpg') no-repeat center center fixed;
+      background: #121212 url('BG.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       min-height: 100vh;
@@ -46,6 +46,7 @@
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid #ffffff;
+      flex-shrink: 0; /* Mencegah gambar tertekan di layar kecil */
     }
 
     .header-text h1 {
@@ -264,9 +265,10 @@
       font-weight: bold;
       cursor: pointer;
       padding: 6px 16px;
+      transition: color 0.2s;
     }
 
-    .menu button:hover {
+    .menu button.nav-active {
       color: #00bfff;
     }
   </style>
@@ -276,7 +278,8 @@
   <!-- HEADER -->
   <header>
     <div class="header-content">
-      <img src="logo.jpg" alt="Logo">
+      <!-- Menggunakan LOGO.jpg sesuai nama file Anda -->
+      <img src="LOGO.jpg" alt="Logo Ikky Rmx">
       <div class="header-text">
         <h1 id="brandName">Ikky Rmx</h1>
         <p id="brandTag">FLM versi ZIP Jalur VIP</p>
@@ -309,7 +312,7 @@
 
   <!-- MENU NAVIGASI BAWAH -->
   <div class="menu">
-    <button id="navDashboard">🏠<br>Dashboard</button>
+    <button id="navDashboard" class="nav-active">🏠<br>Dashboard</button>
     <button id="navProduk">🛍<br>Produk</button>
   </div>
 
@@ -318,11 +321,11 @@
     const config = {
       brand: "Ikky Rmx",
       tag: "FLM versi ZIP Jalur VIP",
-      waNumber:  "", // Ganti dengan nomor WA Anda
-      channelUrl: "https://whatsapp.com/channel/" // Ganti dengan link saluran Anda
+      waNumber: "6281234567890", // Ganti dengan nomor WA Anda (Format: 628...)
+      channelUrl: "https://whatsapp.com/channel/" // Ganti dengan link saluran WA Anda
     };
 
-    // --- DAFTAR PRODUK (Silakan sesuaikan judul, harga, jumlah terjual, dan nama file mp3) ---
+    // --- DAFTAR PRODUK ---
     const produkList = [
       ["ASTAGA BERCANDA - AKBAR CHALAY", "Rp45.000", 2, "AKBAR18.mp3"],
       ["RADYA SPN - SELAIN DONATUR VIRAL", "Rp45.000", 13, "DONATUR13.mp3"],
@@ -353,7 +356,7 @@
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `
-        <img src="logo.jpg" alt="Cover">
+        <img src="LOGO.jpg" alt="Cover">
         <div class="progress-box">
           <div class="progress-bar"><div class="progress"></div></div>
           <div class="time"><span class="current">0:00</span><span class="duration">0:00</span></div>
@@ -366,13 +369,13 @@
             <button class="play">▶ Play</button>
             <button class="buy">🛒 Beli</button>
           </div>
-          <audio src="${audioFile}"></audio>
+          <audio src="${audioFile}" preload="metadata"></audio>
         </div>
       `;
 
       // Event Tombol Beli
       card.querySelector(".buy").onclick = () => {
-        const msg = `Halo ${config.brand},\nSaya ingin membeli lagu/remix:\n\n📌 Judul: ${title}\n💰 Harga: ${price}`;
+        const msg = `Halo ${config.brand},\n\nSaya ingin membeli lagu/remix:\n📌 *Judul:* ${title}\n💰 *Harga:* ${price}`;
         window.open(`https://wa.me/${config.waNumber}?text=${encodeURIComponent(msg)}`, "_blank");
       };
 
@@ -406,8 +409,10 @@
       });
 
       audio.addEventListener("timeupdate", () => {
-        progressBar.style.width = (audio.currentTime / audio.duration * 100) + "%";
-        currentTimeEl.textContent = formatTime(audio.currentTime);
+        if (audio.duration) {
+          progressBar.style.width = (audio.currentTime / audio.duration * 100) + "%";
+          currentTimeEl.textContent = formatTime(audio.currentTime);
+        }
       });
 
       progressContainer.addEventListener("click", (e) => {
@@ -432,10 +437,17 @@
     const showPage = (id) => {
       document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
       document.getElementById(id).classList.add("active");
+
+      document.querySelectorAll(".menu button").forEach(b => b.classList.remove("nav-active"));
+      if (id === "dashboard") {
+        document.getElementById("navDashboard").classList.add("nav-active");
+      } else {
+        document.getElementById("navProduk").classList.add("nav-active");
+      }
     };
 
     document.getElementById("navDashboard").onclick = () => showPage("dashboard");
     document.getElementById("navProduk").onclick = () => showPage("produk");
   </script>
 </body>
- </html>
+</html>
