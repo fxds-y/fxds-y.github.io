@@ -18,6 +18,7 @@
       background-size: cover;
       color: white;
       min-height: 100vh;
+      transition: background-image 0.3s ease-in-out;
     }
 
     /* HEADER - TEMA BIRU KE MERAHAN */
@@ -432,7 +433,7 @@
     document.getElementById("totalProduk").textContent = "⭐ Total Produk : " + produkList.length;
     document.getElementById("totalTerjual").textContent = "🔥 Terjual : " + totalTerjualCount;
 
-    // Navigasi Halaman
+    // Navigasi Halaman + Ganti Background
     const showPage = (id) => {
       document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
       document.getElementById(id).classList.add("active");
@@ -440,8 +441,10 @@
       document.querySelectorAll(".menu button").forEach(b => b.classList.remove("nav-active"));
       if (id === "dashboard") {
         document.getElementById("navDashboard").classList.add("nav-active");
+        document.body.style.backgroundImage = "url('BG.jpg')";
       } else {
         document.getElementById("navProduk").classList.add("nav-active");
+        document.body.style.backgroundImage = "url('BG2.jpg')";
       }
     };
 
