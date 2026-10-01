@@ -14,7 +14,7 @@
     }
 
     body {
-      background: #121212 url('BG.jpg') no-repeat center center fixed;
+      background: #121212 url('BG.webp') no-repeat center center fixed;
       background-size: cover;
       color: white;
       min-height: 100vh;
@@ -290,7 +290,7 @@
   <!-- HEADER -->
   <header>
     <div class="header-content">
-      <img src="LOGO.jpg" alt="Logo Ikky Rmx">
+      <img src="LOGO.webp" alt="Logo Ikky Rmx">
       <div class="header-text">
         <h1 id="brandName">Ikky Rmx</h1>
         <p id="brandTag">FLM versi ZIP Jalur VIP</p>
@@ -367,7 +367,7 @@
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `
-        <img src="LOGO.jpg" alt="Cover">
+        <img src="LOGO.webp" alt="Cover">
         <div class="progress-box">
           <div class="progress-bar"><div class="progress"></div></div>
           <div class="time"><span class="current">0:00</span><span class="duration">0:00</span></div>
@@ -453,10 +453,10 @@
 
       if (id === "dashboard") {
         document.getElementById("navDashboard").classList.add("nav-active");
-        document.body.style.backgroundImage = "url('BG.jpg')";
+        document.body.style.backgroundImage = "url('BG.webp')";
       } else {
         document.getElementById("navProduk").classList.add("nav-active");
-        document.body.style.backgroundImage = "url('BG2.jpg')";
+        document.body.style.backgroundImage = "url('BG2.webp')";
       }
     };
 
