@@ -40,14 +40,21 @@
     .header-content {
       display: flex;
       align-items: center;
-      gap: 15px;
+      justify-content: space-between; /* Menjaga brand di kiri & search di kanan */
+      gap: 10px;
       max-width: 900px;
       margin: auto;
     }
 
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .header-content img {
-      width: 50px;
-      height: 50px;
+      width: 45px;
+      height: 45px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid rgba(255, 255, 255, 0.3);
@@ -55,14 +62,52 @@
     }
 
     .header-text h1 {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: bold;
     }
 
     .header-text p {
       opacity: 0.85;
-      font-size: 13px;
+      font-size: 11px;
       color: #aaa;
+    }
+
+    /* SEARCH INPUT DI HEADER SANPING KANAN */
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box input {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 6px 12px 6px 30px;
+      color: white;
+      font-size: 13px;
+      outline: none;
+      width: 130px;
+      transition: all 0.3s ease;
+    }
+
+    .search-box input:focus {
+      width: 160px;
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .search-box input::placeholder {
+      color: #bbb;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      font-size: 12px;
+      color: #bbb;
+      pointer-events: none;
     }
 
     /* HALAMAN */
@@ -290,10 +335,17 @@
   <!-- HEADER -->
   <header>
     <div class="header-content">
-      <img src="LOGO.webp" alt="Logo Ikky Rmx">
-      <div class="header-text">
-        <h1 id="brandName">Ikky Rmx</h1>
-        <p id="brandTag">FLM versi ZIP Jalur VIP</p>
+      <div class="brand-box">
+        <img src="LOGO.webp" alt="Logo Ikky Rmx">
+        <div class="header-text">
+          <h1 id="brandName">Ikky Rmx</h1>
+          <p id="brandTag">FLM versi ZIP Jalur VIP</p>
+        </div>
+      </div>
+      <!-- FITUR PENCARIAN -->
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Cari lagu...">
       </div>
     </div>
   </header>
@@ -363,6 +415,7 @@
 
       const card = document.createElement("div");
       card.className = "card";
+      card.setAttribute("data-title", title.toLowerCase()); // Atribut untuk pencarian
       card.innerHTML = `
         <img src="LOGO.webp" alt="Cover">
         <div class="progress-box">
@@ -440,6 +493,27 @@
     // Update Statistik
     document.getElementById("totalProduk").textContent = "⭐ Total Produk : " + produkList.length;
     document.getElementById("totalTerjual").textContent = "🔥 Terjual : " + totalTerjualCount;
+
+    // LOGIKA PENCARIAN (SEARCH)
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", (e) => {
+      const filter = e.target.value.toLowerCase();
+      
+      // Jika pengguna mengetik saat masih di Dashboard, otomatis pindah ke Produk
+      if (filter.length > 0 && !document.getElementById("produk").classList.contains("active")) {
+        showPage("produk");
+      }
+
+      const cards = container.getElementsByClassName("card");
+      Array.from(cards).forEach((card) => {
+        const title = card.getAttribute("data-title");
+        if (title.includes(filter)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
 
     // Navigasi Halaman + Ganti Background
     const showPage = (id) => {
