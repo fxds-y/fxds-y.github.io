@@ -72,7 +72,7 @@
       color: #aaa;
     }
 
-    /* KONTROL HEADER KANAN (SORT & SEARCH) */
+    /* KONTROL KANAN: SORT BY & SEARCH */
     .header-right {
       display: flex;
       align-items: center;
@@ -151,10 +151,10 @@
       display: block;
     }
 
-    /* DASHBOARD CARD */
+    /* DASHBOARD CARD & INFO CARD */
     .dashboard-card {
       max-width: 320px;
-      margin: 40px auto;
+      margin: 25px auto;
       background: rgba(18, 18, 18, 0.88);
       padding: 25px;
       border-radius: 30px;
@@ -389,6 +389,7 @@
 
   <!-- HALAMAN DASHBOARD -->
   <div id="dashboard" class="page active">
+    <!-- KOTAK UTAMA -->
     <div class="dashboard-card">
       <h2>Klik (🛍 Produk) Di Kanan Bawah</h2>
       <p>kalo FLM ga ada di daftar produk, silakan hubungi via WhatsApp.</p>
@@ -402,6 +403,15 @@
         <h3 id="totalProduk" style="font-size:16px; margin-bottom: 5px;">⭐ Total Produk : 0</h3>
         <h3 id="totalTerjual" style="font-size:16px;">🔥 Terjual : 0</h3>
       </div>
+    </div>
+
+    <!-- KOTAK INFO TAMBAHAN -->
+    <div class="dashboard-card">
+      <h2 style="font-size: 16px; margin-bottom: 10px; color: #00ff88;">📌 Informasi Penting</h2>
+      <p style="font-size: 12px; color: #ddd; line-height: 1.5; margin-bottom: 0; text-align: left;">
+        Page ini untuk kalian yang ingin mendapatkan FLM versi ZIP dengan full sample yang sudah terpasang.<br><br>
+        Juga untuk mengapresiasi saya untuk membuat FLM yang lebih baik kedepanya, Thank u buat buyer terhormat :)
+      </p>
     </div>
   </div>
 
@@ -426,10 +436,9 @@
     };
 
     // --- DAFTAR PRODUK ---
-    // Format: [Judul, Harga, Terjual, FileAudio, TanggalRilis(YYYY-MM-DD)]
     const produkList = [
-      ["PREMINIM STYLE RADYA", "Rp35.000", 2, "PRMRD.mp3", "2026-10-14"],
-      ["DONATUR STYLE RADYA", "Rp45.000", 4, "DNTR.mp3", "2026-10-10"]
+      ["PREMINIM STYLE RADYA", "Rp35.000", 2, "PRMRD.mp3", "2026-01-10"],
+      ["DONATUR STYLE RADYA", "Rp45.000", 4, "DNTR.mp3", "2026-03-15"]
     ];
 
     // Inisialisasi Teks Header
@@ -497,7 +506,6 @@
 
         playBtn.onclick = () => {
           if (!audio.paused) {
-            audio.paused = true; // wait, standard property is .paused (read-only), use .pause()
             audio.pause();
             playBtn.textContent = "▶ Play";
           } else {
@@ -539,12 +547,11 @@
 
     // Fungsi Sorting Data
     function getSortedList(criteria) {
-      // Buat salinan array agar data asli tidak berubah urutannya secara permanen jika tidak diinginkan
       const sorted = [...produkList];
       if (criteria === "terlaris") {
-        sorted.sort((a, b) => b[2] - a[2]); // Urutkan dari terjual terbanyak
+        sorted.sort((a, b) => b[2] - a[2]);
       } else if (criteria === "terbaru") {
-        sorted.sort((a, b) => new Date(b[4]) - new Date(a[4])); // Urutkan dari tanggal terbaru
+        sorted.sort((a, b) => new Date(b[4]) - new Date(a[4]));
       }
       return sorted;
     }
@@ -558,7 +565,6 @@
     sortSelect.addEventListener("change", (e) => {
       currentSortedList = getSortedList(e.target.value);
       renderProduk(currentSortedList);
-      // Sinkronisasi ulang filter pencarian jika ada teks yang sedang diketik
       applySearchFilter();
     });
 
