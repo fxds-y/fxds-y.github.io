@@ -460,9 +460,9 @@
       <hr style="border:0.5px solid #333; margin: 15px 0;">
       
       <div>
-        <h3 id="totalProduk" style="font-size:16px; margin-bottom: 5px;">⭐ Total Produk : 0</h3>
-        <h3 id="totalTerjual" style="font-size:16px; margin-bottom: 5px;">🔥 Terjual : 0</h3>
-        <h3 id="totalPengunjung" style="font-size:16px; color: #00ffc4;">🧐 Pengunjung : Memuat...</h3>
+        <h3 id="totalProduk" style="font-size:16px; margin-bottom: 5px; color: #ffffff;">⭐ Total Produk : 0</h3>
+        <h3 id="totalTerjual" style="font-size:16px; margin-bottom: 5px; color: #ffffff;">🔥 Terjual : 0</h3>
+        <h3 id="totalPengunjung" style="font-size:16px; color: #ffffff;">🧐 Pengunjung : Memuat...</h3>
       </div>
     </div>
 
@@ -536,14 +536,14 @@
       renderProduk(currentSortedList);
     }
 
-    // --- FITUR PENGHITUNG PENGUNJUNG REAL-TIME ---
-    fetch('https://api.counterapi.dev/v1/ikkyrmx/store-visits/up')
+    // --- FITUR PENGHITUNG PENGUNJUNG REAL-TIME (COUNTAPI) ---
+    fetch('https://api.countapi.xyz/hit/ikkyrmx-store/visits')
       .then(response => response.json())
       .then(data => {
-        document.getElementById("totalPengunjung").textContent = "👀 Pengunjung : " + data.count.toLocaleString();
+        document.getElementById("totalPengunjung").textContent = "🧐 Pengunjung : " + (data.value ? data.value.toLocaleString() : "1");
       })
       .catch(error => {
-        document.getElementById("totalPengunjung").textContent = "👀 Pengunjung : -";
+        document.getElementById("totalPengunjung").textContent = "🧐 Pengunjung : Aktif";
         console.error('Gagal memuat statistik pengunjung:', error);
       });
 
