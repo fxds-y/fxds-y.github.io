@@ -5,6 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ikky Rmx</title>
   <style>
+    /* VARIABEL TEMA WARNA (DEFAULT: PINK & BIRU) */
+    :root {
+      --accent-buy: #e6005c;
+      --accent-play: #2b5cff;
+      --accent-progress: #e6005c;
+      --accent-glow: rgba(255, 255, 255, 0.12);
+    }
+
+    /* PENGATURAN TEMA LAINNYA */
+    body.theme-blue {
+      --accent-buy: #0072ff;
+      --accent-play: #00c6ff;
+      --accent-progress: #00c6ff;
+      --accent-glow: rgba(0, 198, 255, 0.2);
+    }
+
+    body.theme-green {
+      --accent-buy: #00b09b;
+      --accent-play: #96c93d;
+      --accent-progress: #00b09b;
+      --accent-glow: rgba(0, 176, 155, 0.2);
+    }
+
+    body.theme-gold {
+      --accent-buy: #f2994a;
+      --accent-play: #f2c94c;
+      --accent-progress: #f2994a;
+      --accent-glow: rgba(242, 201, 76, 0.2);
+    }
+
     /* RESET & DASAR */
     * {
       margin: 0;
@@ -154,9 +184,9 @@
     /* DASHBOARD CARD & INFO CARD */
     .dashboard-card {
       max-width: 320px;
-      margin: 25px auto;
+      margin: 20px auto;
       background: rgba(18, 18, 18, 0.88);
-      padding: 25px;
+      padding: 20px 25px;
       border-radius: 30px;
       text-align: center;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
@@ -174,6 +204,36 @@
       color: #ccc;
       line-height: 1.4;
       margin-bottom: 20px;
+    }
+
+    /* TOMBOL PILIHAN TEMA (GRID KECIL) */
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .theme-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .theme-btn.active-theme {
+      border-color: var(--accent-buy);
+      background: var(--accent-glow);
     }
 
     /* TOMBOL DASHBOARD */
@@ -224,7 +284,7 @@
     .card:hover {
       transform: translateY(-5px);
       border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 25px var(--accent-glow);
     }
 
     .card img {
@@ -277,13 +337,13 @@
     }
 
     .play {
-      background: #2b5cff;
+      background: var(--accent-play);
       color: white;
       width: 48%;
     }
 
     .buy {
-      background: #e6005c;
+      background: var(--accent-buy);
       color: white;
       width: 48%;
     }
@@ -310,7 +370,7 @@
     .progress {
       width: 0%;
       height: 100%;
-      background: #e6005c;
+      background: var(--accent-progress);
       border-radius: 10px;
     }
 
@@ -389,6 +449,7 @@
 
   <!-- HALAMAN DASHBOARD -->
   <div id="dashboard" class="page active">
+    <!-- KOTAK UTAMA -->
     <div class="dashboard-card">
       <h2>Klik (🛍 Produk) Di Kanan Bawah</h2>
       <p>kalo FLM ga ada di daftar produk, silakan hubungi via WhatsApp.</p>
@@ -404,12 +465,24 @@
       </div>
     </div>
 
+    <!-- KOTAK INFORMASI PENTING -->
     <div class="dashboard-card">
-      <h2 style="font-size: 16px; margin-bottom: 10px; color: #00ff88;">📌 Informasi Penting</h2>
+      <h2 style="font-size: 16px; margin-bottom: 10px; color: var(--accent-buy);">📌 Informasi Penting</h2>
       <p style="font-size: 12px; color: #ddd; line-height: 1.5; margin-bottom: 0; text-align: left;">
         Page ini untuk kalian yang ingin mendapatkan FLM versi ZIP dengan full sample yang sudah terpasang.<br><br>
         Juga untuk mengapresiasi saya untuk membuat FLM yang lebih baik kedepanya, Thank u buat buyer terhormat :)
       </p>
+    </div>
+
+    <!-- KOTAK PENGATURAN TEMA -->
+    <div class="dashboard-card">
+      <h2 style="font-size: 15px; margin-bottom: 8px;">🎨 Pilih Tema Toko</h2>
+      <div class="theme-grid">
+        <button class="theme-btn active-theme" onclick="setTheme('default')">🔥 Default Pink</button>
+        <button class="theme-btn" onclick="setTheme('blue')">⚡ Electric Blue</button>
+        <button class="theme-btn" onclick="setTheme('green')">🌿 Emerald Green</button>
+        <button class="theme-btn" onclick="setTheme('gold')">👑 Royal Gold</button>
+      </div>
     </div>
   </div>
 
@@ -442,7 +515,7 @@
     let produkList = [];
     const container = document.getElementById("produkContainer");
 
-    // Ambil data dari file data.json secara otomatis
+    // Ambil data dari file data.json
     fetch('data.json')
       .then(response => response.json())
       .then(data => {
@@ -567,6 +640,37 @@
       const currentSortedList = getSortedList(e.target.value);
       renderProduk(currentSortedList);
       applySearchFilter();
+    });
+
+    // Fungsi Ganti Tema (Menyimpan pilihan pengunjung di memori browser)
+    function setTheme(themeName) {
+      document.body.className = ""; // Reset kelas tema
+      if (themeName !== 'default') {
+        document.body.classList.add('theme-' + themeName);
+      }
+
+      // Update tanda tombol aktif
+      document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active-theme'));
+      event.target.classList.add('active-theme');
+
+      // Simpan pilihan tema ke localStorage browser
+      localStorage.setItem('selectedTheme', themeName);
+    }
+
+    // Muat tema yang tersimpan saat halaman dibuka
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('selectedTheme');
+      if (savedTheme) {
+        if (savedTheme !== 'default') {
+          document.body.classList.add('theme-' + savedTheme);
+        }
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+          if (btn.textContent.toLowerCase().includes(savedTheme) || (savedTheme === 'default' && btn.textContent.includes('Default'))) {
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active-theme'));
+            btn.classList.add('active-theme');
+          }
+        });
+      }
     });
 
     // LOGIKA PENCARIAN (SEARCH)
