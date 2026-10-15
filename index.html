@@ -40,7 +40,7 @@
     .header-content {
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Menjaga brand di kiri & search di kanan */
+      justify-content: space-between;
       gap: 10px;
       max-width: 900px;
       margin: auto;
@@ -72,7 +72,37 @@
       color: #aaa;
     }
 
-    /* SEARCH INPUT DI HEADER SAMPING KANAN */
+    /* KONTROL HEADER KANAN (SORT & SEARCH) */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* TOMBOL SORT BY */
+    .sort-select {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 6px 10px;
+      color: white;
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sort-select:focus, .sort-select:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .sort-select option {
+      background: #181818;
+      color: white;
+    }
+
+    /* SEARCH INPUT DI HEADER */
     .search-box {
       position: relative;
       display: flex;
@@ -87,12 +117,12 @@
       color: white;
       font-size: 13px;
       outline: none;
-      width: 130px;
+      width: 120px;
       transition: all 0.3s ease;
     }
 
     .search-box input:focus {
-      width: 160px;
+      width: 150px;
       background: rgba(255, 255, 255, 0.18);
       border-color: rgba(255, 255, 255, 0.4);
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
@@ -146,7 +176,7 @@
       margin-bottom: 20px;
     }
 
-    /* TOMBOL DASHBOARD - TEMA GELAP ELEGAN & GLOW */
+    /* TOMBOL DASHBOARD */
     .dash-btn {
       display: block;
       width: 100%;
@@ -342,10 +372,17 @@
           <p id="brandTag">FLM versi ZIP Jalur VIP</p>
         </div>
       </div>
-      <!-- FITUR PENCARIAN -->
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Cari FLM...">
+      
+      <!-- KONTROL KANAN: SORT BY & SEARCH -->
+      <div class="header-right">
+        <select id="sortSelect" class="sort-select">
+          <option value="terlaris">🔥 Terlaris</option>
+          <option value="terbaru">✨ Terbaru</option>
+        </select>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Cari FLM...">
+        </div>
       </div>
     </div>
   </header>
@@ -384,18 +421,16 @@
     const config = {
       brand: "Ikky Rmx",
       tag: "FLM versi ZIP Jalur VIP",
-      waNumber: "6285728150965", // Ganti dengan nomor WA Anda (Format: 628...)
-      channelUrl: "https://whatsapp.com/channel/0029VbDJP8bFCCoSovJoO426" // Ganti dengan link saluran WA Anda
+      waNumber: "6285728150965",
+      channelUrl: "https://whatsapp.com/channel/0029VbDJP8bFCCoSovJoO426"
     };
 
     // --- DAFTAR PRODUK ---
+    // Format: [Judul, Harga, Terjual, FileAudio, TanggalRilis(YYYY-MM-DD)]
     const produkList = [
-      ["PREMINIM STYLE RADYA", "Rp35.000", 2, "PRMRD.mp3"],
-      ["DONATUR STYLE RADYA", "Rp45.000", 4, "DNTR.mp3"]
+      ["PREMINIM STYLE RADYA", "Rp35.000", 2, "PRMRD.mp3", "2026-01-10"],
+      ["DONATUR STYLE RADYA", "Rp45.000", 4, "DNTR.mp3", "2026-03-15"]
     ];
-
-    // Mengurutkan produk dari jumlah terjual terbanyak ke paling sedikit
-    produkList.sort((a, b) => b[2] - a[2]);
 
     // Inisialisasi Teks Header
     document.getElementById("brandName").textContent = config.brand;
@@ -405,104 +440,132 @@
     document.getElementById("btnChannel").onclick = () => window.open(config.channelUrl, "_blank");
     document.getElementById("btnWA").onclick = () => window.open(`https://wa.me/${config.waNumber}`, "_blank");
 
-    // Render Produk
     const container = document.getElementById("produkContainer");
     let totalTerjualCount = 0;
 
-    produkList.forEach((item) => {
-      const title = item[0];
-      const price = item[1];
-      const sold = item[2];
-      const audioFile = item[3];
-      totalTerjualCount += sold;
-
-      const card = document.createElement("div");
-      card.className = "card";
-      card.setAttribute("data-title", title.toLowerCase()); // Atribut untuk pencarian
-      card.innerHTML = `
-        <img src="LOGO.webp" alt="Cover">
-        <div class="progress-box">
-          <div class="progress-bar"><div class="progress"></div></div>
-          <div class="time"><span class="current">0:00</span><span class="duration">0:00</span></div>
-        </div>
-        <div class="info">
-          <h2>${title}</h2>
-          <div class="price">${price}</div>
-          <div class="stats">Terjual ${sold}</div>
-          <div class="btn-group">
-            <button class="play">▶ Play</button>
-            <button class="buy">🛒 Beli</button>
-          </div>
-          <audio src="${audioFile}" preload="metadata"></audio>
-        </div>
-      `;
-
-      // Event Tombol Beli
-      card.querySelector(".buy").onclick = () => {
-        const msg = `Halo Bang ${config.brand},\nGw Mau Beli Flm ini :\n\n*JUDUL:* ${title}\n*HARGA:* ${price}`;
-        window.open(`https://wa.me/${config.waNumber}?text=${encodeURIComponent(msg)}`, "_blank");
-      };
-
-      // Event Player Audio
-      const audio = card.querySelector("audio");
-      const playBtn = card.querySelector(".play");
-      const progressBar = card.querySelector(".progress");
-      const progressContainer = card.querySelector(".progress-bar");
-      const currentTimeEl = card.querySelector(".current");
-      const durationTimeEl = card.querySelector(".duration");
-
-      const formatTime = (s) => isNaN(s) ? "0:00" : Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
-
-      playBtn.onclick = () => {
-        if (!audio.paused) {
-          audio.pause();
-          playBtn.textContent = "▶ Play";
-        } else {
-          document.querySelectorAll("audio").forEach(a => {
-            a.pause();
-            const btn = a.closest(".card").querySelector(".play");
-            if (btn) btn.textContent = "▶ Play";
-          });
-          audio.play();
-          playBtn.textContent = "⏸ Pause";
-        }
-      };
-
-      audio.addEventListener("loadedmetadata", () => {
-        durationTimeEl.textContent = formatTime(audio.duration);
-      });
-
-      audio.addEventListener("timeupdate", () => {
-        if (audio.duration) {
-          progressBar.style.width = (audio.currentTime / audio.duration * 100) + "%";
-          currentTimeEl.textContent = formatTime(audio.currentTime);
-        }
-      });
-
-      progressContainer.addEventListener("click", (e) => {
-        const rect = progressContainer.getBoundingClientRect();
-        audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
-      });
-
-      audio.addEventListener("ended", () => {
-        playBtn.textContent = "▶ Play";
-        progressBar.style.width = "0%";
-        currentTimeEl.textContent = "0:00";
-      });
-
-      container.appendChild(card);
-    });
-
-    // Update Statistik
+    // Hitung total terjual keseluruhan
+    produkList.forEach(item => totalTerjualCount += item[2]);
     document.getElementById("totalProduk").textContent = "⭐ Total Produk : " + produkList.length;
     document.getElementById("totalTerjual").textContent = "🔥 Terjual : " + totalTerjualCount;
 
+    // Fungsi untuk merender produk ke dalam HTML
+    function renderProduk(list) {
+      container.innerHTML = "";
+      
+      list.forEach((item) => {
+        const title = item[0];
+        const price = item[1];
+        const sold = item[2];
+        const audioFile = item[3];
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.setAttribute("data-title", title.toLowerCase());
+        card.innerHTML = `
+          <img src="LOGO.webp" alt="Cover">
+          <div class="progress-box">
+            <div class="progress-bar"><div class="progress"></div></div>
+            <div class="time"><span class="current">0:00</span><span class="duration">0:00</span></div>
+          </div>
+          <div class="info">
+            <h2>${title}</h2>
+            <div class="price">${price}</div>
+            <div class="stats">Terjual ${sold}</div>
+            <div class="btn-group">
+              <button class="play">▶ Play</button>
+              <button class="buy">🛒 Beli</button>
+            </div>
+            <audio src="${audioFile}" preload="metadata"></audio>
+          </div>
+        `;
+
+        // Event Tombol Beli
+        card.querySelector(".buy").onclick = () => {
+          const msg = `Halo Bang ${config.brand},\nGw Mau Beli Flm ini :\n\n*JUDUL:* ${title}\n*HARGA:* ${price}`;
+          window.open(`https://wa.me/${config.waNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+        };
+
+        // Event Player Audio
+        const audio = card.querySelector("audio");
+        const playBtn = card.querySelector(".play");
+        const progressBar = card.querySelector(".progress");
+        const progressContainer = card.querySelector(".progress-bar");
+        const currentTimeEl = card.querySelector(".current");
+        const durationTimeEl = card.querySelector(".duration");
+
+        const formatTime = (s) => isNaN(s) ? "0:00" : Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
+
+        playBtn.onclick = () => {
+          if (!audio.paused) {
+            audio.paused = true; // wait, standard property is .paused (read-only), use .pause()
+            audio.pause();
+            playBtn.textContent = "▶ Play";
+          } else {
+            document.querySelectorAll("audio").forEach(a => {
+              a.pause();
+              const btn = a.closest(".card").querySelector(".play");
+              if (btn) btn.textContent = "▶ Play";
+            });
+            audio.play();
+            playBtn.textContent = "⏸ Pause";
+          }
+        };
+
+        audio.addEventListener("loadedmetadata", () => {
+          durationTimeEl.textContent = formatTime(audio.duration);
+        });
+
+        audio.addEventListener("timeupdate", () => {
+          if (audio.duration) {
+            progressBar.style.width = (audio.currentTime / audio.duration * 100) + "%";
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+          }
+        });
+
+        progressContainer.addEventListener("click", (e) => {
+          const rect = progressContainer.getBoundingClientRect();
+          audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+        });
+
+        audio.addEventListener("ended", () => {
+          playBtn.textContent = "▶ Play";
+          progressBar.style.width = "0%";
+          currentTimeEl.textContent = "0:00";
+        });
+
+        container.appendChild(card);
+      });
+    }
+
+    // Fungsi Sorting Data
+    function getSortedList(criteria) {
+      // Buat salinan array agar data asli tidak berubah urutannya secara permanen jika tidak diinginkan
+      const sorted = [...produkList];
+      if (criteria === "terlaris") {
+        sorted.sort((a, b) => b[2] - a[2]); // Urutkan dari terjual terbanyak
+      } else if (criteria === "terbaru") {
+        sorted.sort((a, b) => new Date(b[4]) - new Date(a[4])); // Urutkan dari tanggal terbaru
+      }
+      return sorted;
+    }
+
+    // Inisialisasi awal render (Default: Terlaris)
+    let currentSortedList = getSortedList("terlaris");
+    renderProduk(currentSortedList);
+
+    // Event Listener untuk Dropdown Sort By
+    const sortSelect = document.getElementById("sortSelect");
+    sortSelect.addEventListener("change", (e) => {
+      currentSortedList = getSortedList(e.target.value);
+      renderProduk(currentSortedList);
+      // Sinkronisasi ulang filter pencarian jika ada teks yang sedang diketik
+      applySearchFilter();
+    });
+
     // LOGIKA PENCARIAN (SEARCH)
     const searchInput = document.getElementById("searchInput");
-    searchInput.addEventListener("input", (e) => {
-      const filter = e.target.value.toLowerCase();
-      
-      // Jika pengguna mengetik saat masih di Dashboard, otomatis pindah ke Produk
+    function applySearchFilter() {
+      const filter = searchInput.value.toLowerCase();
       if (filter.length > 0 && !document.getElementById("produk").classList.contains("active")) {
         showPage("produk");
       }
@@ -516,14 +579,16 @@
           card.style.display = "none";
         }
       });
-    });
+    }
+
+    searchInput.addEventListener("input", applySearchFilter);
 
     // Navigasi Halaman + Ganti Background
     const showPage = (id) => {
       document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
       document.getElementById(id).classList.add("active");
 
-    document.querySelectorAll(".menu button").forEach(b => b.classList.remove("nav-active"));
+      document.querySelectorAll(".menu button").forEach(b => b.classList.remove("nav-active"));
 
       if (id === "dashboard") {
         document.getElementById("navDashboard").classList.add("nav-active");
