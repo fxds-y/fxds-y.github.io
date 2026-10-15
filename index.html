@@ -462,7 +462,9 @@
       <div>
         <h3 id="totalProduk" style="font-size:16px; margin-bottom: 5px; color: #ffffff;">⭐ Total Produk : 0</h3>
         <h3 id="totalTerjual" style="font-size:16px; margin-bottom: 5px; color: #ffffff;">🔥 Terjual : 0</h3>
-        <h3 id="totalPengunjung" style="font-size:16px; color: #ffffff;">🧐 Pengunjung : Memuat...</h3>
+        <h3 style="font-size:16px; color: #ffffff; display: flex; align-items: center; justify-content: center; gap: 5px;">
+          🧐 Pengunjung : <img src="https://hitwebcounter.com/counter/counter.php?page=9999999&style=0038&nbdigits=5&type=page&initCount=1" title="Hit Counter" Alt="web counter" style="border:0; vertical-align:middle; height: 18px;" />
+        </h3>
       </div>
     </div>
 
@@ -535,17 +537,6 @@
       let currentSortedList = getSortedList("terlaris");
       renderProduk(currentSortedList);
     }
-
-    // --- FITUR PENGHITUNG PENGUNJUNG REAL-TIME (COUNTAPI) ---
-    fetch('https://api.countapi.xyz/hit/ikkyrmx-store/visits')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("totalPengunjung").textContent = "🧐 Pengunjung : " + (data.value ? data.value.toLocaleString() : "1");
-      })
-      .catch(error => {
-        document.getElementById("totalPengunjung").textContent = "🧐 Pengunjung : Aktif";
-        console.error('Gagal memuat statistik pengunjung:', error);
-      });
 
     // Fungsi untuk merender produk ke dalam HTML
     function renderProduk(list) {
