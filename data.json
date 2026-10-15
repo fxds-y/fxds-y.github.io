@@ -1,0 +1,16 @@
+[
+  {
+    "title": "PREMINIM STYLE RADYA",
+    "price": "Rp35.000",
+    "sold": 2,
+    "audio": "PRMRD.mp3",
+    "date": "2026-10-14"
+  },
+  {
+    "title": "DONATUR STYLE RADYA",
+    "price": "Rp45.000",
+    "sold": 4,
+    "audio": "DNTR.mp3",
+    "date": "2026-10-10"
+  }
+]
