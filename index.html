@@ -287,9 +287,10 @@
       box-shadow: 0 8px 25px var(--accent-glow);
     }
 
+    /* PERBAIKAN JARAK ATAS ALBUM ART */
     .card img {
       width: 80%;
-      margin: 15px auto 5px;
+      margin: 25px auto 5px; /* Diberi jarak atas 25px agar tidak terlalu mepet */
       display: block;
       aspect-ratio: 1/1;
       object-fit: cover;
@@ -478,10 +479,10 @@
     <div class="dashboard-card">
       <h2 style="font-size: 15px; margin-bottom: 8px;">🎨 Pilih Tema </h2>
       <div class="theme-grid">
-        <button class="theme-btn active-theme" onclick="setTheme('default')">🔥 Default Red</button>
-        <button class="theme-btn" onclick="setTheme('blue')">⚡ Electric Blue</button>
-        <button class="theme-btn" onclick="setTheme('green')">🌿 Emerald Green</button>
-        <button class="theme-btn" onclick="setTheme('gold')">👑 Royal Gold</button>
+        <button class="theme-btn active-theme" onclick="setTheme('default', event)">🔥 Default Red</button>
+        <button class="theme-btn" onclick="setTheme('blue', event)">⚡ Electric Blue</button>
+        <button class="theme-btn" onclick="setTheme('green', event)">🌿 Emerald Green</button>
+        <button class="theme-btn" onclick="setTheme('gold', event)">👑 Royal Gold</button>
       </div>
     </div>
   </div>
@@ -643,7 +644,7 @@
     });
 
     // Fungsi Ganti Tema (Menyimpan pilihan pengunjung di memori browser)
-    function setTheme(themeName) {
+    function setTheme(themeName, event) {
       document.body.className = ""; // Reset kelas tema
       if (themeName !== 'default') {
         document.body.classList.add('theme-' + themeName);
@@ -651,7 +652,9 @@
 
       // Update tanda tombol aktif
       document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active-theme'));
-      event.target.classList.add('active-theme');
+      if (event && event.target) {
+        event.target.classList.add('active-theme');
+      }
 
       // Simpan pilihan tema ke localStorage browser
       localStorage.setItem('selectedTheme', themeName);
@@ -665,8 +668,8 @@
           document.body.classList.add('theme-' + savedTheme);
         }
         document.querySelectorAll('.theme-btn').forEach(btn => {
+          btn.classList.remove('active-theme');
           if (btn.textContent.toLowerCase().includes(savedTheme) || (savedTheme === 'default' && btn.textContent.includes('Default'))) {
-            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active-theme'));
             btn.classList.add('active-theme');
           }
         });
