@@ -389,7 +389,6 @@
 
   <!-- HALAMAN DASHBOARD -->
   <div id="dashboard" class="page active">
-    <!-- KOTAK UTAMA -->
     <div class="dashboard-card">
       <h2>Klik (🛍 Produk) Di Kanan Bawah</h2>
       <p>kalo FLM ga ada di daftar produk, silakan hubungi via WhatsApp.</p>
@@ -405,7 +404,6 @@
       </div>
     </div>
 
-    <!-- KOTAK INFO TAMBAHAN -->
     <div class="dashboard-card">
       <h2 style="font-size: 16px; margin-bottom: 10px; color: #00ff88;">📌 Informasi Penting</h2>
       <p style="font-size: 12px; color: #ddd; line-height: 1.5; margin-bottom: 0; text-align: left;">
@@ -435,37 +433,44 @@
       channelUrl: "https://whatsapp.com/channel/0029VbDJP8bFCCoSovJoO426"
     };
 
-    // --- DAFTAR PRODUK ---
-    const produkList = [
-      ["PREMINIM STYLE RADYA", "Rp35.000", 2, "PRMRD.mp3", "2026-01-10"],
-      ["DONATUR STYLE RADYA", "Rp45.000", 4, "DNTR.mp3", "2026-03-15"]
-    ];
-
-    // Inisialisasi Teks Header
     document.getElementById("brandName").textContent = config.brand;
     document.getElementById("brandTag").textContent = config.tag;
 
-    // Aksi Tombol Dashboard
     document.getElementById("btnChannel").onclick = () => window.open(config.channelUrl, "_blank");
     document.getElementById("btnWA").onclick = () => window.open(`https://wa.me/${config.waNumber}`, "_blank");
 
+    let produkList = [];
     const container = document.getElementById("produkContainer");
-    let totalTerjualCount = 0;
 
-    // Hitung total terjual keseluruhan
-    produkList.forEach(item => totalTerjualCount += item[2]);
-    document.getElementById("totalProduk").textContent = "⭐ Total Produk : " + produkList.length;
-    document.getElementById("totalTerjual").textContent = "🔥 Terjual : " + totalTerjualCount;
+    // Ambil data dari file data.json secara otomatis
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        produkList = data;
+        initStore();
+      })
+      .catch(error => console.error('Gagal memuat data produk:', error));
+
+    function initStore() {
+      let totalTerjualCount = 0;
+      produkList.forEach(item => totalTerjualCount += item.sold);
+
+      document.getElementById("totalProduk").textContent = "⭐ Total Produk : " + produkList.length;
+      document.getElementById("totalTerjual").textContent = "🔥 Terjual : " + totalTerjualCount;
+
+      let currentSortedList = getSortedList("terlaris");
+      renderProduk(currentSortedList);
+    }
 
     // Fungsi untuk merender produk ke dalam HTML
     function renderProduk(list) {
       container.innerHTML = "";
       
       list.forEach((item) => {
-        const title = item[0];
-        const price = item[1];
-        const sold = item[2];
-        const audioFile = item[3];
+        const title = item.title;
+        const price = item.price;
+        const sold = item.sold;
+        const audioFile = item.audio;
 
         const card = document.createElement("div");
         card.className = "card";
@@ -549,21 +554,17 @@
     function getSortedList(criteria) {
       const sorted = [...produkList];
       if (criteria === "terlaris") {
-        sorted.sort((a, b) => b[2] - a[2]);
+        sorted.sort((a, b) => b.sold - a.sold);
       } else if (criteria === "terbaru") {
-        sorted.sort((a, b) => new Date(b[4]) - new Date(a[4]));
+        sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
       }
       return sorted;
     }
 
-    // Inisialisasi awal render (Default: Terlaris)
-    let currentSortedList = getSortedList("terlaris");
-    renderProduk(currentSortedList);
-
     // Event Listener untuk Dropdown Sort By
     const sortSelect = document.getElementById("sortSelect");
     sortSelect.addEventListener("change", (e) => {
-      currentSortedList = getSortedList(e.target.value);
+      const currentSortedList = getSortedList(e.target.value);
       renderProduk(currentSortedList);
       applySearchFilter();
     });
