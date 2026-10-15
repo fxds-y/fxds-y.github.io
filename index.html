@@ -72,7 +72,7 @@
       color: #aaa;
     }
 
-    /* SEARCH INPUT DI HEADER SANPING KANAN */
+    /* SEARCH INPUT DI HEADER SAMPING KANAN */
     .search-box {
       position: relative;
       display: flex;
@@ -394,6 +394,9 @@
       ["DONATUR STYLE RADYA", "Rp45.000", 4, "DNTR.mp3"]
     ];
 
+    // Mengurutkan produk dari jumlah terjual terbanyak ke paling sedikit
+    produkList.sort((a, b) => b[2] - a[2]);
+
     // Inisialisasi Teks Header
     document.getElementById("brandName").textContent = config.brand;
     document.getElementById("brandTag").textContent = config.tag;
@@ -520,7 +523,7 @@
       document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
       document.getElementById(id).classList.add("active");
 
-      document.querySelectorAll(".menu button").forEach(b => b.classList.remove("nav-active"));
+    document.querySelectorAll(".menu button").forEach(b => b.classList.remove("nav-active"));
 
       if (id === "dashboard") {
         document.getElementById("navDashboard").classList.add("nav-active");
