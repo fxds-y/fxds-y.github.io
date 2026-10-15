@@ -287,10 +287,9 @@
       box-shadow: 0 8px 25px var(--accent-glow);
     }
 
-    /* PERBAIKAN JARAK ATAS ALBUM ART */
     .card img {
       width: 80%;
-      margin: 25px auto 5px; /* Diberi jarak atas 25px agar tidak terlalu mepet */
+      margin: 25px auto 5px;
       display: block;
       aspect-ratio: 1/1;
       object-fit: cover;
@@ -462,7 +461,8 @@
       
       <div>
         <h3 id="totalProduk" style="font-size:16px; margin-bottom: 5px;">⭐ Total Produk : 0</h3>
-        <h3 id="totalTerjual" style="font-size:16px;">🔥 Terjual : 0</h3>
+        <h3 id="totalTerjual" style="font-size:16px; margin-bottom: 5px;">🔥 Terjual : 0</h3>
+        <h3 id="totalPengunjung" style="font-size:16px; color: #00ffc4;">🧐 Pengunjung : Memuat...</h3>
       </div>
     </div>
 
@@ -477,7 +477,7 @@
 
     <!-- KOTAK PENGATURAN TEMA -->
     <div class="dashboard-card">
-      <h2 style="font-size: 15px; margin-bottom: 8px;">🎨 Pilih Tema </h2>
+      <h2 style="font-size: 15px; margin-bottom: 8px;">🎨 Pilih Tema Toko</h2>
       <div class="theme-grid">
         <button class="theme-btn active-theme" onclick="setTheme('default', event)">🔥 Default Red</button>
         <button class="theme-btn" onclick="setTheme('blue', event)">⚡ Electric Blue</button>
@@ -535,6 +535,17 @@
       let currentSortedList = getSortedList("terlaris");
       renderProduk(currentSortedList);
     }
+
+    // --- FITUR PENGHITUNG PENGUNJUNG REAL-TIME ---
+    fetch('https://api.counterapi.dev/v1/ikkyrmx/store-visits/up')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("totalPengunjung").textContent = "👀 Pengunjung : " + data.count.toLocaleString();
+      })
+      .catch(error => {
+        document.getElementById("totalPengunjung").textContent = "👀 Pengunjung : -";
+        console.error('Gagal memuat statistik pengunjung:', error);
+      });
 
     // Fungsi untuk merender produk ke dalam HTML
     function renderProduk(list) {
@@ -643,24 +654,22 @@
       applySearchFilter();
     });
 
-    // Fungsi Ganti Tema (Menyimpan pilihan pengunjung di memori browser)
+    // Fungsi Ganti Tema
     function setTheme(themeName, event) {
-      document.body.className = ""; // Reset kelas tema
+      document.body.className = "";
       if (themeName !== 'default') {
         document.body.classList.add('theme-' + themeName);
       }
 
-      // Update tanda tombol aktif
       document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active-theme'));
       if (event && event.target) {
         event.target.classList.add('active-theme');
       }
 
-      // Simpan pilihan tema ke localStorage browser
       localStorage.setItem('selectedTheme', themeName);
     }
 
-    // Muat tema yang tersimpan saat halaman dibuka
+    // Muat tema tersimpan
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('selectedTheme');
       if (savedTheme) {
