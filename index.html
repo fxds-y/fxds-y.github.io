@@ -400,7 +400,7 @@
       align-items: center;
       padding: 10px 0;
       box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
-      z-index: 1000;
+      z-index: 2000;
     }
 
     .menu button {
@@ -418,9 +418,59 @@
       color: #ffffff;
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
+
+    /* STYLING POP-UP TOAST NOTIFIKASI SEAMLESS */
+    #toastNotification {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: rgba(20, 20, 20, 0.95);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      padding: 18px 28px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    #toastNotification.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      border-top-color: var(--accent-buy);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
+
+  <!-- POP-UP NOTIFIKASI SEAMLESS -->
+  <div id="toastNotification">
+    <div class="spinner"></div>
+    <span>Menghubungkan ke WhatsApp...</span>
+  </div>
 
   <!-- HEADER -->
   <header>
@@ -535,6 +585,17 @@
       renderProduk(currentSortedList);
     }
 
+    // Fungsi untuk memunculkan Pop-Up Notifikasi Seamless
+    function showWhatsAppPopup(url) {
+      const toast = document.getElementById("toastNotification");
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        window.open(url, "_blank");
+      }, 1500); // Jeda 1.5 detik agar pop-up terlihat elegan sebelum membuka WhatsApp
+    }
+
     // Fungsi untuk merender produk ke dalam HTML
     function renderProduk(list) {
       container.innerHTML = "";
@@ -566,10 +627,11 @@
           </div>
         `;
 
-        // Event Tombol Beli
+        // Event Tombol Beli dengan Pop-Up Seamless
         card.querySelector(".buy").onclick = () => {
           const msg = `Halo Bang ${config.brand},\nGw Mau Beli Flm ini :\n\n*JUDUL:* ${title}\n*HARGA:* ${price}`;
-          window.open(`https://wa.me/${config.waNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+          const waUrl = `https://wa.me/${config.waNumber}?text=${encodeURIComponent(msg)}`;
+          showWhatsAppPopup(waUrl);
         };
 
         // Event Player Audio
