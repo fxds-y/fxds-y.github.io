@@ -191,6 +191,7 @@
       text-align: center;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
@@ -271,14 +272,16 @@
       gap: 20px;
     }
 
-    /* CARD PRODUK */
+    /* CARD PRODUK (DIUBAH JADI GLASSMORPHISM) */
     .card {
-      background: rgba(20, 20, 20, 0.92);
+      background: rgba(18, 18, 18, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       overflow: hidden;
       transition: 0.3s;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
 
     .card:hover {
@@ -419,7 +422,7 @@
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
-    /* STYLING POP-UP TOAST NOTIFIKASI SEAMLESS (TERSUSUN KE BAWAH) */
+    /* STYLING POP-UP TOAST NOTIFIKASI SEAMLESS */
     #toastNotification {
       position: fixed;
       top: 50%;
@@ -587,7 +590,7 @@
       renderProduk(currentSortedList);
     }
 
-    // Fungsi untuk memunculkan Pop-Up Notifikasi Seamless
+    // Fungsi untuk memunculkan Pop-Up Notifikasi Seamless (Jeda 0.5 detik)
     function showWhatsAppPopup(url) {
       const toast = document.getElementById("toastNotification");
       toast.classList.add("show");
@@ -595,7 +598,7 @@
       setTimeout(() => {
         toast.classList.remove("show");
         window.open(url, "_blank");
-      }, 500); // Jeda 1.5 detik agar pop-up terlihat elegan sebelum membuka WhatsApp
+      }, 500); // 500ms = 0.5 detik
     }
 
     // Fungsi untuk merender produk ke dalam HTML
